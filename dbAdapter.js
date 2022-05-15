@@ -13,4 +13,16 @@ const insertDB = function(err, db) {
     });
   }
 
-MongoClient.connect(url, insertDB );
+
+
+  const findDoc = function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("makronim");
+    dbo.collection("prodoct").findOne({name:"yellow"}, function(err, result) {
+      if (err) throw err;
+      console.log(result.price);
+      db.close();
+    });
+  }
+//MongoClient.connect(url, insertDB );
+MongoClient.connect(url,findDoc ); 
